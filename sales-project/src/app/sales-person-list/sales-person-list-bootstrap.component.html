@@ -1,0 +1,26 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Volume</th>
+            <th>Quota</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let person of salesPersonList" [ngClass]="{'highlight': person.salesVolume > 2}">
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.salesVolume | currency: 'USD'}}</td>
+            <td>
+                <div *ngIf="person.salesVolume > 2; else notQuota">Yes</div>
+                <ng-template #notQuota>No</ng-template>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
